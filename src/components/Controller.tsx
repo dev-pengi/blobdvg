@@ -12,6 +12,7 @@ import Image from "next/image";
 import { saveSvgAsPng } from "save-svg-as-png";
 import { ChromePicker } from "react-color";
 import { colorbuttonStyle, optionbuttonStyle } from "@/styles";
+import { toast } from "react-hot-toast";
 
 interface Props {
   handleAngleChange: (value: number | number[]) => void;
@@ -21,6 +22,8 @@ interface Props {
   color2: any;
   setColor1: any;
   setColor2: any;
+  outline: any;
+  setOutline: any;
 }
 
 const Controller: FC<Props> = ({
@@ -31,6 +34,8 @@ const Controller: FC<Props> = ({
   color2,
   setColor1,
   setColor2,
+  outline,
+  setOutline,
 }) => {
   const [chrome1Enabled, setChrome1Enabled] = useState(false);
   const [chrome2Enabled, setChrome2Enabled] = useState(false);
@@ -75,10 +80,26 @@ const Controller: FC<Props> = ({
       URL.revokeObjectURL(url);
     }
   };
+  const handleCopyCode = () => {
+    const svgElement = svgRef.current;
+
+    if (svgElement) {
+      const svgData = new XMLSerializer().serializeToString(svgElement);
+      navigator.clipboard
+        .writeText(svgData)
+        .then(() => {
+          toast.success("SVG code copied to clipboard");
+        })
+        .catch((error) => {
+          toast.error("Error copying SVG code");
+        });
+    } else toast.error("Error copying SVG code");
+  };
+
   return (
     <div>
       <div className="bg-white shadow-light rounded-lg px-7 py-6 w-[98%] max-w-[400px] md:min-w-[400px]">
-        <div className="flex items-center justify-center gap-6">
+        <div className="flex items-center justify-center gap-12 px-8">
           <div ref={color1Ref} className="relative">
             <button
               className={`${colorbuttonStyle}`}
@@ -108,6 +129,14 @@ const Controller: FC<Props> = ({
                 onChange={(newColor) => setColor2(newColor.hex)}
               />
             )}
+          </div>
+          <div>
+            <button
+              className={`${colorbuttonStyle} ${
+                outline ? "border-gray-500 border-solid" : "bg-gray-500"
+              }`}
+              onClick={() => setOutline(!outline)}
+            ></button>
           </div>
         </div>
 
@@ -163,7 +192,7 @@ const Controller: FC<Props> = ({
             <Image src={download} alt="download" />
             Png
           </button>
-          <button className={`${optionbuttonStyle}`}>
+          <button onClick={handleCopyCode} className={`${optionbuttonStyle}`}>
             <Image src={copy} alt="copy" />
             Svg
           </button>

@@ -11,6 +11,8 @@ const SvgCreator: FC = () => {
 
   const [color1, setColor1] = useState("#1FFBE8");
   const [color2, setColor2] = useState("#34FF80");
+
+  const [outline, setOutline] = useState(false);
   const svgRef = useRef(null);
 
   return (
@@ -27,6 +29,7 @@ const SvgCreator: FC = () => {
             shapeProps={{ growth: circle, edges: angels }}
             variant="gradient"
             colors={[color1, color2]}
+            isOutline={outline}
           />
         </div>
         <Controller
@@ -37,6 +40,8 @@ const SvgCreator: FC = () => {
           color2={color2}
           setColor1={setColor1}
           setColor2={setColor2}
+          outline={outline}
+          setOutline={setOutline}
         />
       </div>
     </section>
