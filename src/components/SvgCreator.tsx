@@ -26,6 +26,7 @@ const SvgCreator: FC = () => {
         <div className="w-[97%] max-w-[400px]">
           <SvgBlob
             ref={svgRef}
+            className="overflow-visible"
             shapeProps={{ growth: circle, edges: angels }}
             variant="gradient"
             colors={[color1, color2]}
