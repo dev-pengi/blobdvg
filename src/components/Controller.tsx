@@ -133,7 +133,7 @@ const Controller: FC<Props> = ({
           <div>
             <button
               className={`${colorbuttonStyle} ${
-                outline ? "border-gray-500 border-solid" : "bg-gray-500"
+                outline ? "bg-gray-500" : "border-gray-500 border-solid"
               }`}
               onClick={() => setOutline(!outline)}
             ></button>
