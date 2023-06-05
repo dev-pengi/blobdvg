@@ -14,18 +14,17 @@
     "@types/react-dom": "18.2.4",
     "autoprefixer": "10.4.14",
     "next": "13.4.4",
-    "noisejs": "^2.1.0",
     "postcss": "8.4.24",
     "rc-slider": "^10.2.0",
     "react": "18.2.0",
+    "react-color": "^2.19.3",
     "react-dom": "18.2.0",
     "react-svg-blob": "^0.3.1",
-    "svg.js": "^2.7.1",
-    "svgdom": "^0.1.14",
+    "save-svg-as-png": "^1.4.17",
     "tailwindcss": "3.3.2",
     "typescript": "5.1.3"
   },
   "devDependencies": {
-    "@types/noisejs": "^0.0.28"
+    "@types/react-color": "^3.0.6"
   }
 }
